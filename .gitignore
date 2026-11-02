@@ -1,0 +1,9 @@
+# Artefactos de compilación (se regeneran con PyInstaller / Inno Setup)
+build/
+{tmp}/
+__pycache__/
+*.pyc
+
+# Entornos locales
+.venv/
+venv/

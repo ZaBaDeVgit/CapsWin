@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/release/ZaBaDeV/CapsWin?color=22c55e&label=Versi%C3%B3n" alt="Version">
+  <img src="https://img.shields.io/github/release/ZaBaDeV/CapsWin?color=22c55e&label=Versi%C3%B3n" alt="Versión">
   <img src="https://img.shields.io/github/license/ZaBaDeV/CapsWin?color=3b82f6" alt="Licencia">
   <img src="https://img.shields.io/github/stars/ZaBaDeV/CapsWin?color=yellow" alt="Estrellas">
 </p>
@@ -21,12 +21,12 @@
 
 | Característica | Descripción |
 |----------------|-------------|
-| 🎨 **Diseño Moderno** | Notificaciones ovaladas con colores vibrantes |
-| 🟢🔴 **Indicador Visual** | Icono verde/rojo en la bandeja del sistema |
-| 📍 **Posición Inteligente** | Notificaciones aparecen en la parte superior central |
-| 🚀 **Inicio Automático** | Se ejecuta al iniciar Windows |
-| ⚡ **Bajo Consumo** | Uso mínimo de recursos del sistema |
-| 🔔 **Notificaciones Bonitas** | Diseño ovalado con fondo verde (activado) o rojo (desactivado) |
+| 🎨 **Notificación en cápsula** | Aparece centrada arriba, con fundido suave y el color del estado |
+| 🟢🔴 **Icono en la bandeja** | Verde con `MAYUS` (activado) o rojo con `mayus` (desactivado) |
+| 🔍 **Nítida en cualquier pantalla** | Compatible con escalado de Windows (DPI) |
+| 🚀 **Inicio automático** | Activable o desactivable desde el menú de la bandeja |
+| ⚡ **Bajo consumo** | Un solo hilo de interfaz, sin ventanas ni hilos acumulados |
+| 🔒 **Una sola instancia** | Si ya está abierta, no se lanza una segunda copia |
 
 ---
 
@@ -41,7 +41,7 @@
 
 ## 📥 Descarga
 
-### Instalador (Recomendado)
+### Instalador (recomendado)
 [**Descargar CapsWin_Setup.exe**](https://github.com/ZaBaDeV/CapsWin/releases/latest/download/CapsWin_Setup.exe)
 
 ### Portable
@@ -51,43 +51,38 @@
 
 ## 🛠️ Instalación
 
-### Con Instalador
-1. Descarga `CapsWin_Setup.exe`
-2. Ejecuta el instalador
-3. ¡Listo! La aplicación se iniciara automáticamente
+### Con instalador
+1. Descarga `CapsWin_Setup.exe`.
+2. Ejecútalo y sigue los pasos (el idioma es español).
+3. ¡Listo! La aplicación se iniciará automáticamente.
 
 ### Portable
-1. Descarga `CapsWin.exe`
-2. Ejecuta el archivo
-3. La aplicación aparecera en la bandeja del sistema
+1. Descarga `CapsWin.exe`.
+2. Ejecútalo.
+3. El icono aparecerá en la bandeja del sistema.
 
 ---
 
 ## 💻 Uso
 
-- **Icono en bandeja**: El icono en la bandeja del sistema indica el estado:
-  - 🟢 Verde con "MAYUS" = Bloq Mayús activado
-  - 🔴 Rojo con "mayus" = Bloq Mayús desactivado
-
-- **Menú contextual**: Clic derecho en el icono para:
-  - ✅ Iniciar con Windows
-  - ❌ Salir
+- **Icono en la bandeja**: indica el estado del Bloq Mayús.
+  - 🟢 Verde con «MAYUS» = Bloq Mayús activado
+  - 🔴 Rojo con «mayus» = Bloq Mayús desactivado
+- **Menú contextual** (clic derecho en el icono):
+  - ✅ **Iniciar con Windows**: activa o desactiva el inicio automático.
+  - ❌ **Salir**: cierra CapsWin.
+- **Registro de errores**: `%LOCALAPPDATA%\CapsWin\capswin.log`.
 
 ---
 
 ## 🔧 Desarrollo
 
 ### Requisitos
-```
-Python 3.8+
-pystray
-Pillow
-pywin32
-```
+- Windows 10/11
+- Python 3.9+
 
-### Instalación de dependencias
 ```bash
-pip install pystray pillow pywin32
+pip install -r requirements.txt
 ```
 
 ### Ejecutar desde código fuente
@@ -95,50 +90,40 @@ pip install pystray pillow pywin32
 python caps_lock_indicator.py
 ```
 
-### Compilar EXE
+### Compilar el ejecutable
 ```bash
 pip install pyinstaller
-pyinstaller --onefile --noconsole caps_lock_indicator.py
+pyinstaller caps_lock_indicator.spec
 ```
+Genera `dist\CapsWin.exe`.
 
-### Compilar instalador
+### Compilar el instalador
+Requiere [Inno Setup 6](https://jrsoftware.org/isinfo.php) y el ejecutable anterior:
 ```bash
-pip install innosetup
 iscc setup.iss
 ```
+Genera `Output\CapsWin_Setup.exe`.
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 Estructura del proyecto
 
 ```
 CapsWin/
-├── caps_lock_indicator.py   # Código principal
-├── setup.iss               # Script de Inno Setup
-├── README.md               # Este archivo
-├── dist/
-│   └── CapsWin.exe         # Ejecutable compilado
-└── Output/
-    └── CapsWin_Setup.exe  # Instalador
+├── caps_lock_indicator.py    # Código principal
+├── caps_lock_indicator.spec  # Configuración de PyInstaller
+├── setup.iss                 # Script de Inno Setup
+├── requirements.txt          # Dependencias de Python
+├── README.md
+├── dist/                     # Ejecutable compilado (generado)
+└── Output/                   # Instalador compilado (generado)
 ```
-
----
-
-## 🤝 Contribuir
-
-¡Las contribuciones son bienvenidas! Por favor, lee [CONTRIBUTING.md](CONTRIBUTING.md) para más detalles.
-
-1. Fork el proyecto
-2. Crea tu rama de características (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
 
 ---
 
 ## 📝 Licencia
 
-Este proyecto está bajo la licencia MIT. Ver [LICENSE](LICENSE) para más información.
+Este proyecto se distribuye bajo licencia MIT.
 
 ---
 
